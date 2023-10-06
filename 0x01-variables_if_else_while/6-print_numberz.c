@@ -5,13 +5,11 @@
  */
 int main(void)
 {
-char digit = '0';
-while (digit <= '9')
+int n;
+for (n = 0; n <=9; n++)
 {
-putchar(digit);
-digit++;
+putchar(n + 48)
+{
+putchar("\n");
+return (0);
 }
-putchar('\n');
-return 0;
-}
-
