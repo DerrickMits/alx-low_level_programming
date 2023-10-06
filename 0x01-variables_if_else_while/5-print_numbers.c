@@ -5,10 +5,11 @@
  */
 int main(void)
 {
-int n;
-for (n = 0; n <= 9; n++)
+int i;
+for (i = 0; i <= 9; i++)
 {
-printf("%d\n", n);
+printf("%d", i);
 }
-return (0);
+printf("\n");
+return 0;
 }
