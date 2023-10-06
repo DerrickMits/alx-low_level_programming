@@ -1,20 +1,19 @@
 #include <stdio.h>
 /**
- * main - Exclude some letters
- * Return: 0 (success)
+ * main - Print to exclude some letters
+ * Return: 0 (Success)
  */
 int main(void)
 {
-int n = 97;
-while (n <= 122)
+char letter = 'a';
+while (letter <= 'z')
 {
-if (n == 101 || n == 113)
+if (letter != 'e' && letter != 'q')
 {
-n++;
-continue;
+putchar(letter);
 }
-putchar("\n");
+letter++;
 }
-n++;
+putchar('\n');
 return (0);
 }
