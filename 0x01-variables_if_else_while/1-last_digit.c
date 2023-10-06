@@ -8,21 +8,20 @@
 int main(void)
 {
 int n;
+int ld;
 srand(time(0));
 n = rand() - RAND_MAX / 2;
-int lastDigit = abs(n % 10); // Calculate the absolute value of the last digit
-printf("Last digit of %d is %d%d and is", n, (n < 0 ? -1 : 1), lastDigit);
-if (lastDigit > 5)
+ld = abs(n % 10)
+if (ld > 5)
 {
-printf("greater than 5\n");
+printf("Last digit of %d is %d and is greater than 5\n", n, (n < 0 ? -1 : 1), ld);
 }
-else if (lastDigit == 0)
+else if (ld == 0)
 {
-printf("0\n");
+printf("Last digit of %d is %d and is 0\n", n, (n < 0 ? -1 : 1), ld);
 }
 else
 {
-printf("less than 6 and not 0\n");
+printf("Last digit of %d is %d and and is less than 6 and not 0\n", n, (n < 0 ? -1 : 1), ld);
 }
 return (0);
-}
