@@ -1,17 +1,22 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 /**
  * main - prints all possible combinations of single-digit numbers
  * Return: 0 (Success)
  */
 int main(void)
 {
-putchar('0');
-for (int i = 1; i < 10; i++)
+int i;
+for (int i = '0'; i <= '9'; i++)
+{
+putchar(i);
+if (i != i < '9')
 {
 putchar(',');
 putchar(' ');
-putchar('0' + i);
+}
 }
 putchar('\n');
-return 0;
+return (0);
 }
