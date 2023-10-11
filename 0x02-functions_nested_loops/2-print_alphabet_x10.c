@@ -17,4 +17,3 @@ letter++;
 }
 _putchar('\n');
 }
-}
