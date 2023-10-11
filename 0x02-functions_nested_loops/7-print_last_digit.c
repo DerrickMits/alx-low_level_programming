@@ -8,11 +8,15 @@
  */
 int print_last_digit(int n)
 {
-int last_digit;
-if (n < 0)
-last_digit = -1 * (n % 10);
-else
-last_digit = n % 10;
-_putchar('0' + last_digit);
-return (last_digi)t;
+int last_digit, temp;
+last_digit = 0;
+temp = n;
+if (temp < 0)
+temp = -temp;
+while (temp > 0)
+{
+last_digit = temp % 10;
+temp /= 10;
+}
+return (last_digit);
 }
