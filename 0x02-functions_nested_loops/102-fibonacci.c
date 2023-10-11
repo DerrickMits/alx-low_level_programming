@@ -6,18 +6,15 @@
  */
 int main(void)
 {
-int count;
-unsigned long fib1 = 0, fib2 = 1, sum;
-for (count = 0, count , 50; count++)
+long long int a = 1, b = 2, next, i;
+printf("%lld, %lld", a, b);
+for (i = 3; i <= 50; i++)
 {
-sum = fib1 + fib2;
-printf("%lu", sum);
-fib1 = fib2
-fib2 = sum;
-if (count == 49)
-printf("\n");
-else 
-printf(", ");
+next = a + b;
+printf(", %lld", next);
+a = b;
+b = next;
 }
+printf("\n");
 return (0);
 }
