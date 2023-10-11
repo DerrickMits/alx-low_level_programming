@@ -19,9 +19,9 @@ else
 {
 _putchar(',');
 _putchar(' ');
-}
 if (result < 10)
 _putchar(' ');
+}
 _putchar(result + '0');
 if (j == 9)
 _putchar('\n');
