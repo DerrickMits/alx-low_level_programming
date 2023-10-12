@@ -1,20 +1,23 @@
 #include "main.h"
 
 /**
- * Print_line - Draws line according to the parameter
- * @n: The number of lines to print
- * Return: Empty
+ * print_line - Prints a line according to the parameter.
+ * @n: The number of lines to draw.
+ * Return: Empty.
  */
-void print_line(int n) 
+void print_line(int n)
 {
+int x;
 if (n <= 0)
 {
 _putchar('\n');
-return;
 }
-for (int i = 0; i < n; i++)
+else
 {
-_putchar('_');
+for (x = 0; x < n; x++)
+{
+_putchar(95)
 }
 _putchar('\n');
+}
 }
