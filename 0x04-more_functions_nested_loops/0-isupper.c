@@ -3,7 +3,7 @@
 
 /**
  * main - checks for uppercase character
- * Return: 0 (Success)
+ * Return:: 1 for uppercase or 0 for otherwise
  */
 int _isupper(int c)
 {
