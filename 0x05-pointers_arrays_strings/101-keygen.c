@@ -41,6 +41,6 @@ break;
 }
 }
 }
-printf("%5", password);
+printf("%s", password);
 return (0);
 }
