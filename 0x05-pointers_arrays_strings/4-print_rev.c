@@ -2,8 +2,11 @@
 #include <stdio.h>
 
 /**
- * print_rev - prints a sting in reverse
- * *s: The string to print
+ * print_rev - prints a string in reverse
+ * @s: The string to print in reverse
+ *
+ * This function takes a string and prints it in reverse order
+ *
  * Return: void
  */
 void print_rev(char *s)
