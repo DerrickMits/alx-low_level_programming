@@ -15,7 +15,7 @@ int j;
 for (j = 0; j < n; j++)
 {
 printf("%d", a[j]);
-if (b != (n - 1))
+if (j != (n - 1))
 {
 printf(", ");
 }
