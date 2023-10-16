@@ -1,10 +1,10 @@
 #include "main.h"
 
 /**
- * print_rev - prints a string in reverse
- * @s: The string to print in reverse
+ * _atoi - prints a string in reverse
+ * @s: The pointer to convert
  *
- * This function takes a string and prints it in reverse order, followed by a new line.
+ * This function takes function that convert a string to an integer
  *
  * Return: void
  */
