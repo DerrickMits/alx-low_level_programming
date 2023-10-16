@@ -18,7 +18,7 @@ a++;
 }
 if (a % 2 == 1)
 {
-c = (a - 1) / 2);
+c = ((a - 1) / 2);
 c += 1;
 }
 else
@@ -27,7 +27,7 @@ c = a / 2;
 }
 for (; c < a; c++)
 {
-_putchar(str[c];
+_putchar(str[c]);
 }
 _putchar('\n');
 }
