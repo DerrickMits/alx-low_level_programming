@@ -4,7 +4,7 @@
  * _puts - prints a string
  * @str: The string to print
  *
- * This function prints the characters in the given string followed by a newline.
+ * This function prints the characters in the string.
  *
  * Return: Void
  */
