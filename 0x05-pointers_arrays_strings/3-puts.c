@@ -2,7 +2,10 @@
 
 /**
  * _puts - prints a string
- * @str - The string to print
+ * @str: The string to print
+ *
+ * This function prints the characters in the given string followed by a newline.
+ *
  * Return: Void
  */
 void _puts(char *str)
