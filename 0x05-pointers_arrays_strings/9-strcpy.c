@@ -5,10 +5,8 @@
  * _strcpy - Copies a sting
  * @dest: Destination value
  * @src: Source Value
- * Return: The pointer to dest
  * This function that copies the string pointed
- *
- * Return: void
+ * Return: The pointer to dest
  */
 char *_strcpy(char *dest, char *src)
 {
