@@ -4,7 +4,7 @@
  * leet - encode int0 1337
  * @n: input value
  *
- * A function that encodes a string into 1337 
+ * A function that encodes a string into 1337
  *
  * Return: n value
  */
