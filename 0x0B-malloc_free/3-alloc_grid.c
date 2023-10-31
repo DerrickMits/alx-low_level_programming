@@ -2,9 +2,9 @@
 #include <stdlib.h>
 
 /**
- * allorc_grid - prints a grid of integers
- * @Width: Width of the grid
- * @Length: Length of the grid
+ * alloc_grid - prints a grid of integers
+ * @width: Width of the grid
+ * @height: height of the grid
  * Return: Nothing
  */
 
@@ -20,7 +20,7 @@ if (a == NULL)
 free(a);
 return (NULL);
 }
-for (i = 0; 1 < height; i++)
+for (i = 0; i < height; i++)
 {
 a[i] = malloc(sizeof(int) * width);
 if (a[i] == NULL)
