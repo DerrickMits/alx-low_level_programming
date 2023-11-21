@@ -11,42 +11,29 @@
  */
 size_t free_listint_safe(listint_t **h)
 {
-size_t size = 0;
-listint_t *s, *f, *temp;
-if (h == NULL || *h == NULL)
+size_t a = 0;
+int i;
+listint_t *t;
+if (!h || !*h)
 return (0);
-s = *h;
-f = *h;
-while (f && f->next)
+while (*h)
 {
-s = s->next;
-f = f->next->next;
-if (s == f)
+i = *h - (*h)->next;
+if (i > 0)
 {
-s = *h;
-while (s != f)
-{
-temp = f;
-f = f->next;
-free(temp);
-size++;
+t = (*h)->next;
+free(*h);
+*h = t;
+a++;
 }
-while (f->next != s)
+else
 {
-temp = f->next;
-f->next = temp->next;
-free(temp);
-size++;
-}
+free(*h);
+*h = NULL;
+a++;
 break;
 }
 }
-while (*h)
-{
-temp = *h;
-*h = temp->next;
-free(temp);
-size++;
-}
-return (size);
+*h = NULL;
+return (a);
 }
