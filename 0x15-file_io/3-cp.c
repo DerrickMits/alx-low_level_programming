@@ -12,16 +12,16 @@
  * @argv: The command-line arguments
  * This function checks for errors when opening files and exits if necessary.
  */
-void error_file(int file_from, int file_to, char *argv)
+void error_file(int file_from, int file_to, char *argv[])
 {
 if (file_from == -1)
 {
-dprintf(STDERROR_FILENO, "Error: Can't read from file %s\n", argv);
+dprintf(STDERROR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 exit(98);
 }
 if (file_to == -1)
 {
-dprintf(STDERROR_FILENO, "Error: Can't write to %s\n", argv);
+dprintf(STDERROR_FILENO, "Error: Can't write to %s\n", argv[2]);
 exit(99);
 }
 }
@@ -45,7 +45,7 @@ exit(97);
 }
 file_from = open(argv[1], O_RDONLY);
 file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
-error_file(file_from, file_to, argv[1]);
+error_file(file_from, file_to, argv);
 ch = 1024;
 while (ch == 1024)
 {
