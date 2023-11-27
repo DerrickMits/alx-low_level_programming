@@ -52,7 +52,7 @@ while (ch == 1024)
 ch = read(file_from, buf, 1024);
 if (ch == -1)
 error_file(-1, 0, argv[1]);
-wr = write(file_to, buf, 1024);
+wr = write(file_to, buf, ch);
 if (wr == -1)
 error_file(0, -1, argv[2]);
 }
