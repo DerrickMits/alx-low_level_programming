@@ -1,101 +1,71 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include "main.h"
+#include <stdio.h>
 
-#define BUFFER_SIZE 1024
+#define STDERROR_FILENO 2
 
 /**
- * openFile - Opens a file and handles errors if any.
- * @filename: The name of the file to open.
- * @flags: The flags to use when opening the file.
- * @mode: The mode to use when creating the file (if applicable).
- *
- * Return: The file descriptor on success, or exits the program on failure.
+ * error_file - Opens the files and checks errors
+ * @file_from: Initial file to copy
+ * @file_to: The place to copy to
+ * @argv: The command-line arguments
+ * This function checks for errors when opening files and exits if necessary.
  */
-int openFile(const char *filename, int flags, mode_t mode);
+void error_file(int file_from, int file_to, char *argv)
+{
+if (file_from == -1)
+{
+dprintf(STDERROR_FILENO, "Error: Can't read from file %s\n", argv);
+exit(98);
+}
+if (file_to == -1)
+{
+dprintf(STDERROR_FILENO, "Error: Can't write to %s\n", argv);
+exit(99);
+}
+}
 
 /**
- * closeFile - Closes a file and handles errors if any.
- * @fd: The file descriptor to close.
- * @filename: The name of the file associated with the file descriptor.
- */
-void closeFile(int fd, const char *filename);
-
-/**
- * main - Copies the content of a file to another file.
- * @argc: The number of arguments.
- * @argv: An array containing the arguments.
- *
- * Return: 0 on success, or the corresponding error code on failure.
+ * main - Copies the content of the file
+ * @argc: Counts the number of arguments
+ * @argv: Vector argument
+ * This function copies the content of one file to another
+ * Return: 0 on success
  */
 int main(int argc, char *argv[])
 {
-int ffrom, fto, r, w;
+int file_from, file_to, e_close;
+ssize_t ch, wr;
+char buf[1024];
 if (argc != 3)
 {
-dprintf(2, "Usage: %s file_from file_to\n", argv[0]);
+dprintf(STDERROR_FILENO, "Usage: cp file_from file_to\n");
 exit(97);
 }
-ffrom = openFile(argv[1], O_RDONLY, 0);
-fto = openFile(argv[2], O_WRONLY | O_CREAT | O_TRUNC, 0666);
-do {
-char buffer[BUFFER_SIZE];
-r = read(ffrom, buffer, BUFFER_SIZE);
-if (r == -1)
+file_from = open(argv[1], O_RDONLY);
+file_to = open(argv[2], O_CREAT | O_WRONLY | O_APPEND, 0664);
+error_file(file_from, file_to, argv[1]);
+ch = 1024;
+while (ch == 1024)
 {
-dprintf(2, "Error: Can't read from file %s\n", argv[1]);
-closeFile(ffrom, argv[1]);
-closeFile(fto, argv[2]);
-exit(98);
+ch = read(file_from, buf, 1024);
+if (ch == -1)
+error_file(-1, 0, argv[1]);
+wr = write(file_to, buf, 1024);
+if (wr == -1)
+error_file(0, -1, argv[2]);
 }
-w = write(fto, buffer, r);
-if (w == -1 || w != r)
+e_close = close(file_from);
+if (e_close == -1)
 {
-dprintf(2, "Error: Can't write to %s\n", argv[2]);
-closeFile(ffrom, argv[1]);
-closeFile(fto, argv[2]);
-exit(99);
-}
-} while (r > 0);
-closeFile(ffrom, argv[1]);
-closeFile(fto, argv[2]);
-return (0);
-}
-
-
-/**
- * openFile - Opens a file and handles errors if any.
- * @filename: The name of the file to open.
- * @flags: The flags to use when opening the file.
- * @mode: The mode to use when creating the file (if applicable).
- *
- * Return: The file descriptor on success, or exits the program on failure.
- */
-
-int openFile(const char *filename, int flags, mode_t mode)
-{
-int fd = open(filename, flags, mode);
-if (fd == -1)
-{
-dprintf(2, "Error: Can't open file %s\n", filename);
-exit(98);
-}
-return (fd);
-}
-
-/**
- * closeFile - Closes a file and handles errors if any.
- * @fd: The file descriptor to close.
- * @filename: The name of the file associated with the file descriptor.
- */
-
-void closeFile(int fd, const char *filename)
-{
-if (close(fd) == -1)
-{
-dprintf(2, "Error: Can't close fd %d for file %s\n", fd, filename);
+dprintf(STDERROR_FILENO, "Error: Can't close fd %d\n", file_from);
 exit(100);
 }
+e_close = close(file_to);
+if (e_close == -1)
+{
+dprintf(STDERROR_FILENO, "Error: Can't close fd %d\n", file_to);
+}
+return (0);
 }
